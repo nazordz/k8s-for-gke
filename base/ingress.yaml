@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-ingress
+  labels:
+    name: web-ingress
+  annotations:
+    kubernetes.io/ingress.class: gce
+    kubernetes.io/ingress.allow-http: "true"
+    kubernetes.io/ingress.global-static-ip-name: web-ip
+    cert-manager.io/issuer: letsencrypt-production
+spec:
+  tls:
+    - secretName: web-ssl
+      hosts:
+        - anakstartup.com
+  rules:
+  - host: anakstartup.com
+    http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: "/"
+        backend:
+          service:
+            name: hello-app-svc
+            port: 
+              number: 80

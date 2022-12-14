@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-app
+  template:
+    metadata:
+      labels:
+        app: hello-app
+    spec:
+      containers:
+      - name: hello-app
+        image: asia-southeast2-docker.pkg.dev/learn-terraform-370214/hello-repo/hello-app:v1
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "300m"
+        ports:
+        - containerPort: 8080
+        envFrom:
+          - configMapRef:
+              name: hello-app-cm

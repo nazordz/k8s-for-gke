@@ -1,0 +1,7 @@
+namespace: hello-app
+bases:
+  - "../base"
+configMapGenerator:
+  - name: hello-app-cm
+    envs:
+      - ".env"

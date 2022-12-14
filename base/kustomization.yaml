@@ -1,0 +1,8 @@
+resources:
+  - "secret.yaml"
+  - "service.yaml"
+  - "deployment.yaml"
+  - "issuer-lets-encrypt-production.yaml"
+  - "issuer-lets-encrypt-staging.yaml"
+  - "ingress.yaml"
+  
